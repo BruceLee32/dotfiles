@@ -1,0 +1,10 @@
+------------------------
+         TODO 
+------------------------
+ - Make an \ans command that boxes the answer 
+ - Make a \note command for [!note] command
+ - Make different snippets for examSnippets<TAB> and mathSnippets<TAB>
+ - Make a \solution command 
+ - Make a github repository that has a website that teaches you how to set up neovim 
+ - *ONCE FINISHED TEMPLATES* set up a github repository that includes the templates
+ - Also make a google drive thing 

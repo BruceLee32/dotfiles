@@ -1,0 +1,292 @@
+global !p
+def math():
+  return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+snippet examHelp "examHelp"
+\begin{comment}
+# Files:
+		examTemplate.tex
+		examPreamble.tex 
+		examMacros.tex 
+		README
+
+# Setting up:
+		ns = new section (exams)
+		nt = new section 
+		syllabus =  syllabus table {knowledge/understanding}{communication}{application}{thinking}{total}
+		title = making title
+		type \section*{\hspace{-3em} sectionName} when making a section inside of numerate
+		en = \begin{enumerate}\end{enumerate}
+
+# Snippets:
+		qu = regular questions 
+		qt = test questions (with vspace)
+		2qu = sub questions -- alphabetical
+		3qu = sub sub questions -- roman numerals
+		qh = horizontal questions (using tables)
+		t<TAB> = \text{}
+		it<TAB> = \item{}
+		log = logarithm
+		in = \in
+
+# For Solutions:
+		box<TAB> = \framebox{}
+
+\end{comment}
+
+endsnippet
+snippet info 
+\title{\Huge{${1:mathCourse}}\\ ${2:Subject or topic}}
+\author{\huge{Kenny Chen}}
+\date{\today}
+endsnippet
+
+snippet dm "Display Math" A
+\[
+	$1
+\]$0
+endsnippet
+
+snippet beg "\begin{}\end{}" bA
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+snippet align "\begin{align*}\end{align*}" bA
+\begin{align*}
+	$1
+\end{align*}
+endsnippet
+
+snippet display "display style for $ $ math" 
+$\displaystyle$1$
+endsnippet
+
+snippet space "\vspace{}" bA
+\vspace{$1}
+endsnippet
+
+snippet subp "subpart" bA
+\subpart$1
+endsnippet
+
+snippet fig "insert figure" bA
+\begin{figure}[htb!]
+\ ${1: position}
+	\includegraphics[scale=$2]{$3}
+	\caption{$4}
+	\label{$5}
+\end{figure}
+endsnippet
+
+snippet tb "bold" 
+\textbf{$1}$2
+endsnippet
+
+snippet ti "italicize"
+\textit{$1}$2
+endsnippet
+
+context "math()"
+snippet int "integral" A
+\int_{$1}^{$2}$3
+endsnippet
+
+context "math()"
+snippet $int "integral" A 
+$\int_{$1}^{$2}$3$
+endsnippet
+
+snippet ff "fraction" A 
+\frac{$1}{$2}$0
+endsnippet
+
+snippet $ff "fraction" A
+$\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet al "alpha" A
+\alpha
+endsnippet
+
+context "math()"
+snippet be "beta" A
+\beta
+endsnippet
+
+context "math()"
+snippet sum "summation" A
+\sum{$1}^{$2}$0
+endsnippet
+
+snippet $sum "summation" A
+$\sum_{$1}^{$2}$0$
+endsnippet
+
+context "math()"
+snippet inf "infinity" A
+\infty 
+endsnippet
+
+snippet $ "$ $" A
+$$1$$0
+endsnippet
+
+snippet tabular "table" A
+\begin{center}
+	\begin{tabular}{|c|c|$1}
+	\hline
+	$2 & $3\\ % two columns corresponding to two c's
+	\hline
+	$4 & $5\\ % second row
+	\hline
+	\end{tabular}
+\end{center}$0
+endsnippet
+
+snippet tabularexample "table example" A
+\begin{comment}
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	each c represents the number of columns that you want and the bar makes the column have walls & column 2 & column 3 & column 4\\
+	\hline
+	\end{tabular}
+\end{center}
+\end{comment}
+endsnippet
+
+snippet col 
+\hline
+${1:text here}\\
+endsnippet
+
+snippet sqrt "square root" A
+\sqrt{$1}$0
+endsnippet
+
+snippet thet "theta" A
+\theta$0
+endsnippet
+
+snippet root "nth root"
+\sqrt[$1]{$2}$0
+endsnippet
+
+snippet cbrt "cube root" A
+\sqrt[3]{$1}$0
+endsnippet
+
+context "math()"
+snippet log "log" A
+\text{log}_{$1}($2)$0
+endsnippet
+
+context "math()"
+snippet in "\in" A
+\in
+endsnippet
+
+snippet box "framebox"
+\framebox{$1}$0
+endsnippet
+
+snippet en "enumerate" bA
+\begin{enumerate}
+	$1
+\end{enumerate}
+$0
+endsnippet
+
+snippet rom "roman" bA
+\begin{enumerate}[label=(\roman*)]
+	$1
+\end{enumerate}
+$0
+endsnippet
+
+snippet it "\item" 
+\item{$1}$0 
+endsnippet
+
+snippet ns "new section (questions)" A
+\section*{$1}
+\begin{enumerate}
+\setlength\itemsep{1em}
+	$2
+\end{enumerate}
+endsnippet
+
+snippet nt "new section with vspace" A
+\section{$1}
+$0
+endsnippet
+
+snippet qu "regular questions" bA
+\item{$1}
+$0
+endsnippet
+
+snippet qt "test questions" bA 
+\item{$1}
+\vspace{$2}
+$0
+endsnippet
+
+snippet qh "horizontal questions" bA
+\begin{tabularx}{\textwidth}{@{}${1:XXX}@{}}
+	${2:column1 & column2 & column3}
+\end{tabularx}
+endsnippet
+
+snippet 2qu "sub questions -- alphabetical" bA 
+\begin{enumerate}[label=(\alph*)]
+	$1
+\end{enumerate}
+endsnippet
+
+snippet 3qu "sub sub questions -- roman numeral" bA 
+\begin{enumerate}[label=(\roman*)]
+	$1	
+\end{enumerate}
+endsnippet
+
+snippet title "makeTitle{}" bA
+\makeTitle{${1:testName}}{${2:courseCode}}{${3:grade}}{${4:schoolName}}{${5:date}}
+$0
+endsnippet
+
+snippet marking "\marking" bA
+\marking{${1: K/U}}{${2: C}}{${3: A}}{${4: T}}
+$0
+endsnippet
+
+context "math()"
+snippet div "division symbol"
+\div
+endsnippet
+
+context "math()"
+snippet quad "\quad" A
+\quad{$1}$0
+endsnippet
+
+snippet mathbb "\mathbb" A
+\mathbb{$1}$0
+endsnippet
+
+snippet t "\text{}" 
+\text{$1}$0
+endsnippet
+
+context "math()"
+snippet deg "degree symbol" A
+^{\circ}
+endsnippet
+
+snippet section "\section*{\hspace{-3em} sectionName}"
+\section*{\hspace{-3em} ${1:sectionName}}$0
+endsnippet
