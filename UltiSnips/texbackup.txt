@@ -13,12 +13,6 @@ snippet info
 \date{\today}
 endsnippet
 
-snippet list "list{0.5}" bA 
-\begin{list0.5}
-	$0
-\end{list0.5}
-endsnippet
-
 ###############################
 #----------TEMPLATES----------#
 ###############################
@@ -28,20 +22,6 @@ endsnippet
 ###############################
 #         FORMATTING          #
 ###############################
-
-snippet derivation "\begin{derivation}" bA 
-\begin{derivation}
-	$0
-\end{derivation}
-endsnippet
-
-snippet center "\begin{center}" bA 
-\begin{center}
-	$1
-\end{center}
-$0
-endsnippet
-
 snippet dm "Display Math" A
 \[
 	$1
@@ -110,15 +90,15 @@ snippet qh "horizontal questions" bA
 endsnippet
 
 snippet 2qu "sub questions -- alphabetical" bA 
-\begin{2qu}
+\begin{enumerate}[label=(\alph*)]
 	$1
-\end{2qu}
+\end{enumerate}
 endsnippet
 
 snippet 3qu "sub sub questions -- roman numeral" bA 
-\begin{3qu}
+\begin{enumerate}[label=(\roman*)]
 	$1	
-\end{3qu}
+\end{enumerate}
 endsnippet
 
 snippet title "makeTitle{}" bA
@@ -171,8 +151,8 @@ snippet tabular "table" A
 \begin{table}[h!] % delete [h!] if there are bugs
 
 	%%% TABLE CONFIG %%% 
-	\renewcommand{\arraystretch}{1.5} % changes vertical space for each cell 
-	\setlength{\tabcolsep}{10pt} % changes horizontal space for each cell
+	\renewcommand{\arraystretch}{1.8} % changes vertical space for each cell 
+	\setlength{\tabcolsep}{18pt} % changes horizontal space for each cell
 	\setlength{\arrayrulewidth}{0.25mm}
 
 	\begin{center}
@@ -196,11 +176,6 @@ endsnippet
 
 snippet multicolumn "\multicolumn{}{}{}" A
 \multicolumn{${1:number of columns}}{${2: text's position in cell}}{${3: content}}  
-endsnippet
-
-snippet col "column" 
-\hline
-$1
 endsnippet
 
 ###############################
@@ -358,11 +333,6 @@ endsnippet
 
 context "math()"
 snippet log "log" A
-\text{log}_{$1}$2
-endsnippet
-
-context "math()"
-snippet 2log "log" A
 \text{log}_{$1}($2)$0
 endsnippet
 
@@ -386,7 +356,7 @@ endsnippet
 
 context "math()"
 snippet lim "limit" A 
-\lim_{$1\to $2}$0
+\lim_{$1\to$2}$0
 endsnippet
 
 context "math()"
@@ -403,12 +373,12 @@ snippet pdv "\pdv{} partial derivative" A
 endsnippet
 
 context "math()"
-snippet 2ln "\ln()" A 
+snippet ln "\ln()" A 
 \ln($1)$0
 endsnippet
 
 context "math()"
-snippet ln "\ln()" A 
+snippet 2ln "\ln()" A 
 \ln $0
 endsnippet
 
@@ -480,50 +450,8 @@ snippet ti "italicize"
 \textit{$1}$2
 endsnippet
 
-snippet sc "\textsc{}"
-\textsc{$1}$2
-endsnippet
-
 ###############################
 #------------TEXT-------------#
-###############################
-
-
-
-###############################
-#            TUFTE            #
-###############################
-
-snippet proof "\begin{myproof}\end{myproof}" bA
-\begin{myproof}
-	$0
-\end{myproof}
-endsnippet
-
-snippet eg "\begin{eg}\end{eg}" bA 
-\begin{eg}
-	$0
-\end{eg}
-endsnippet
-
-snippet myproof "\begin{myproof}\end{myproof}" bA
-\begin{myproof}
-	$0
-\end{myproof}
-endsnippet
-
-snippet side "\sidenote{}" 
-\sidenote{$1}$0
-endsnippet
-
-snippet theorem "\begin{theorem}[]\end{theorem}" bA 
-\begin{theorem}[$1]
-	$0
-\end{theorem}
-endsnippet
-
-###############################
-#------------TUFTE------------#
 ###############################
 
 
@@ -532,52 +460,37 @@ endsnippet
 #       COURSE TEMPLATE       #
 ###############################
 
-snippet example "example" bA 
-\begin{example}{$1}
-	$0
-\end{example}
-endsnippet
-
-snippet 2example "2example" bA 
-\begin{2example}{$1}
-	$0
-\end{2example}
+snippet examples "example" bA
+\subsection{Examples}
+\begin{enumerate}
+\setlength\itemsep{0.5em}
+	$1
+\end{enumerate}
 endsnippet
 
 snippet definition "definition" bA 
-\begin{definition}[$1]
-	$0
-\end{definition}
+\textbf{Definition:} $0
 endsnippet
 
 snippet note "note" bA 
-\begin{note}{ }
-	$0
-\end{note}
+\textbf{Note:} $0
 endsnippet
 
-snippet remark "remark" bA 
-\begin{remark} 
-	$0
-\end{remark}
+snippet solution "\textit{\textbf{Solution:}}"
+\textit{\textbf{Solution:}} $1
 endsnippet
 
-snippet solution "solution" bA 
-\begin{solution}
-	$0
-\end{solution}
+snippet solutions "\textit{\textbf{Solution:}}"
+\textit{\textbf{Solutions:}} $1
 endsnippet
 
-snippet problems "\begin{problems}" bA
-\begin{problems}
-	$0
-\end{problems}
-endsnippet
-
-snippet +problems "\begin{+problems}" bA
-\begin{+problems}
-	$0
-\end{+problems}
+snippet problems "\subsubsection{Problems}" bA
+\subsubsection{Problems}
+\begin{enumerate}
+\setlength\itemsep{0.5em}
+	$1
+\end{enumerate}
+$0
 endsnippet
 
 snippet bullet "bullet points" bA 
@@ -649,11 +562,11 @@ snippet ch "\ce{}" A
 endsnippet
 
 snippet ch "$\ce{}$" 
-$\ce{$1}$2$$0
+$\ce{$1}$0$
 endsnippet
 
 snippet 2ch "\ce{}_{}"  
-$\ce{$1_{($2)}}$3$$0
+$\ce{$1_{($2)}}$0$
 endsnippet
 
 context "math()"
@@ -667,7 +580,7 @@ snippet io "isotope" A
 endsnippet
 
 snippet io "isotope" 
-$\text{$1}^{$2}$3$$0
+$\text{$1}^{$2}$0$
 endsnippet
 
 context "math()"
@@ -676,7 +589,7 @@ snippet 2io "isotope" A
 endsnippet
 
 snippet 2io "isotope" 
-$\text{$1}^{$2}_{$3}$4$$0
+$\text{$1}^{$2}_{$3}$0$
 endsnippet
 
 context "math()"
@@ -690,14 +603,6 @@ endsnippet
 
 snippet lw "\lewis{}{}{}{}{}{}{}{}" A
 \lewis{$1}{$2}{$3}{$4}{$5}{$6}{$7}{$8}{$9}$0
-endsnippet
-
-snippet bohr "\bohr{}{}" bA 
-\bohr{$1}{$0}
-endsnippet
-
-snippet 2bohr "\bohr[]{}{}" bA 
-\bohr[$1]{$2}{$0}
 endsnippet
 
 ###############################

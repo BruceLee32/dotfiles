@@ -1,28 +1,58 @@
 " ------------------------
-" PLUGINS
+"        PLUGINS
 " ------------------------
 call plug#begin()
-Plug 'scrooloose/NERDTree' " NERDTree 
-
-Plug 'lervag/vimtex' " Vimtex
-set conceallevel=1 " these two lines sets the \[ \] $ invisible (for writing equations) so that they aren't as obtrusive
-let g:tex_conceal='abdmg'
-
 Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " Telescope/fuzzy-search
-Plug 'nvim-lua/plenary.nvim' " Required for telescope/fuzzy-search
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Required for telescope/fuzzy-search
 Plug 'https://github.com/tpope/vim-commentary' " Commenting for vim 
+Plug 'KeitaNakamura/tex-conceal.vim' " Vimtex text conceal
+
+" -------------------
+"    Telescope FZF 
+" -------------------
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " Telescope/fuzzy-search
+Plug 'nvim-lua/plenary.nvim' " Required for telescope/fuzzy-search
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" ------------
+"   NERDTree
+" ------------ 
+Plug 'scrooloose/NERDTree' " NERDTree 
+nnoremap <C-t> :NERDTreeToggle<CR>  
+
+" -----------
+"   Tagbar
+" -----------
+Plug 'preservim/tagbar' " Tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" -----------------
+"     Vim-Wiki
+" -----------------
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
+
+" -------------------
+"  vim-airline 
+" -------------------
 Plug 'vim-airline/vim-airline' " vim airline (fancy bar at the bottom)
-Plug 'vim-airline/vim-airline-themes' " vim airline themes 
-Plug 'https://github.com/neoclide/coc.nvim' " Auto complete
+Plug 'vim-airline/vim-airline-themes' " vim airline themes
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
+" set t_Co=256
+set noshowmode
+" set statusline=%{toupper(g:currentmode[mode()])}%{toupper(&spelllang)}\ %{b:gitbranch}%<%F%h%m%r%=%-5.(%l,%c%V%)\ %y
 
 " ------------------------------
-"  UltiSnips
-"  Soures
-"  https://castel.dev/post/lecture-notes-1/ 
-"  https://www.ejmastnak.com/tutorials/vim-latex/ultisnips/#getting-started-with-ultisnips
-"  https://www.youtube.com/watch?v=RlseJkeVqj4
+"          UltiSnips
+"  SOURCES
+"      https://castel.dev/post/lecture-notes-1/ 
+"      https://www.ejmastnak.com/tutorials/vim-latex/ultisnips/#getting-started-with-ultisnips
+"      https://www.youtube.com/watch?v=RlseJkeVqj4
 "  -----------------------------
 Plug 'sirver/ultisnips'
 let g:UltiSnipsExpandTrigger = '<tab>'
@@ -30,27 +60,57 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsSnippetDirectories=['.config/nvim/UltiSnips', 'UltiSnips']  " using Neovim 
 
-" -------------------------
-" COLORSCHEMES 
-"  -----------------------
+" ---------------
+"     Vimtex
+" ---------------
+Plug 'lervag/vimtex' 
+set conceallevel=1 " these two lines sets the \[ \] $ invisible (for writing equations) so that they aren't as obtrusive
+let g:tex_conceal='abdmg'
+let g:vimtex_view_method = 'sioyek'
+nnoremap <leader>vv <cmd>VimtexView<cr>
+
+" ---------------
+"       CoC 
+" ---------------
+Plug 'neoclide/coc.nvim' 
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+
+" --------------------
+"    Vim auto-save
+" --------------------
+Plug '907th/vim-auto-save' 
+let g:auto_save = 1  " enable AutoSave on Vim startup
+
+" -------------------
+"    Colorschemes
+" -------------------
 Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
-" Plug 'rafi/awesome-vim-colorschemes' " Colorschemes 
 Plug 'https://github.com/EdenEast/nightfox.nvim' " Nightfox colorscheme 
 Plug 'junegunn/seoul256.vim' " Seoul256 colorscheme 
 Plug 'https://github.com/Mofiqul/vscode.nvim' " VSCode colorscheme 
+Plug 'Yazeed1s/minimal.nvim' " Minimal colorscheme 
+Plug 'sainnhe/everforest' " Everfrost colorscheme 
+Plug 'NTBBloodbath/doom-one.nvim' " Doom emacs colorscheme 
+Plug 'https://github.com/sainnhe/edge' " Edge colorscheme 
+Plug 'projekt0n/github-nvim-theme' " Github colorscheme
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " Catppuccin colorscheme 
+" Plug 'rafi/awesome-vim-colorschemes' " Colorschemes 
 
 call plug#end()
 
 let maplocalleader = " " 
 let mapleader = " " 
 
+syntax on
 :set hidden                " When opening new file in current buffer causes file to be hidden instead of closed 
 :set number                " Shows line number
 :set autoindent            " Allows autoindent
 :set smarttab              " Makes tabbing smarter somehow  
 :set softtabstop=4         " idk
 :set wrap                  " makes it so that the lines appear below when running out of space horizontall on screen
-:colorscheme vscode 
+:colorscheme doom-one
 :set mouse=a               " allows you to use the cursor 
 :set guicursor=i:block     " changes the insert mode cursor to be a block
 :set noswapfile            " no more swapfiles
@@ -61,20 +121,24 @@ let mapleader = " "
 :set termguicolors 
 :set relativenumber
 
-nnoremap <C-t> :NERDTreeToggle<CR>  
 nnoremap <C-z> u<CR>
 nnoremap <C-y> <C-R>
 inoremap <C-Z> <C-O>u
 inoremap <C-Y> <C-O><C-R>
 
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" Zathura
+map <Leader>pf :! zathura --mode fullscreen master.pdf<CR>
 
-" -------------------------------------------------
-" TABS 
-" -------------------------------------------------
+" Rendering the html in the browser via F12 
+nnoremap <F12> :exe ':silent !open -a /Applications/Firefox.app %'<CR> 
+
+" Inkscape Figures 
+inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/../figures/"'<CR><CR>:w<CR>
+nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/../figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+
+" ----------
+"    Tabs 
+" ----------
 nnoremap H gT 
 nnoremap L gt 
 nnoremap T :tabnew<CR>
@@ -83,10 +147,13 @@ nnoremap <C-n> :tabmove -1<CR>
 nnoremap <C-m> :tabmove +1<CR>
 nnoremap <C-q> :bd<CR>
 
-" -------------------------------------------------
-" SPLITS 
-" -------------------------------------------------
+" -----------
+"   Splits 
+" -----------
 set splitbelow splitright 
+
+" Bind copy and paste 
+nnoremap <C-c> "*y 
 
 " Split keybinds 
 map <Leader>vs :vsplit<CR>
@@ -110,22 +177,3 @@ map <Leader>tk <C-w>t<C-w>K
 
 " Open terminal in a split 
 map <Leader>tt :vnew term://zsh<CR>
-
-" ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-" ----------------------------------------------
-"  CoC (Conquer of Completion)
-"  ---------------------------------------------
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
-inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
-
-" -------------------------------------------------
-"  vim-airline plugin
-"  ------------------------------------------------
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_powerline_fonts = 1
-" set t_Co=256
-set noshowmode
-set statusline=%{toupper(g:currentmode[mode()])}%{toupper(&spelllang)}\ %{b:gitbranch}%<%F%h%m%r%=%-5.(%l,%c%V%)\ %y
-
