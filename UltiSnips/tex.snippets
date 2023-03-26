@@ -7,7 +7,7 @@ endglobal
 #         TEMPLATES           #
 ###############################
 
-snippet info 
+snippet info "info"
 \title{\Huge{${1:mathCourse}}\\ ${2:Subject or topic}}
 \author{\huge{Kenny Chen}}
 \date{\today}
@@ -28,6 +28,14 @@ endsnippet
 ###############################
 #         FORMATTING          #
 ###############################
+
+snippet text "\textwidth" 
+\textwidth 
+endsnippet
+
+snippet p "point" 
+$($1,\,$2)$$0
+endsnippet
 
 snippet derivation "\begin{derivation}" bA 
 \begin{derivation}
@@ -210,7 +218,7 @@ endsnippet
 snippet fig "insert figure" bA
 \begin{figure}[H]
 \centering
-	\includegraphics[scale=$2]{$3}
+	\includegraphics[width=$2]{../figures/$3}
 	\caption{$4}
 	\label{$5}
 \end{figure}
@@ -434,32 +442,32 @@ endsnippet
 
 context "math()"
 snippet sin "\sin" A
-\sin$1
+\sin 
 endsnippet
 
 context "math()"
 snippet cos "\cos" A
-\cos$1
+\cos 
 endsnippet
 
 context "math()"
 snippet tan "\tan" A
-\tan$1
+\tan 
 endsnippet
 
 context "math()"
 snippet cot "\cot" A
-\cot$1
+\cot 
 endsnippet
 
 context "math()"
 snippet csc "\csc" A
-\csc$1
+\csc 
 endsnippet
 
 context "math()"
 snippet sec "\sec" A
-\sec$1
+\sec 
 endsnippet
 
 ###############################

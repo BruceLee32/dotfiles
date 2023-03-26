@@ -1,3 +1,9 @@
+let maplocalleader = " " 
+let mapleader = " " 
+
+:set ignorecase
+:set smartcase
+
 " ------------------------
 "        PLUGINS
 " ------------------------
@@ -17,11 +23,25 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+" ---------------
+"  Vim-surround 
+" ---------------
+Plug 'tpope/vim-surround'
+
 " ------------
 "   NERDTree
 " ------------ 
 Plug 'scrooloose/NERDTree' " NERDTree 
 nnoremap <C-t> :NERDTreeToggle<CR>  
+
+" ----------
+"  Harpoon
+" ----------
+Plug 'ThePrimeagen/harpoon'
+nnoremap <leader>a <cmd>lua require("harpoon.mark").add_file()<cr>
+nnoremap <leader>e <cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>
+nmap <C-k> :lua require("harpoon.ui").nav_next()<CR>
+nmap <C-j> :lua require("harpoon.ui").nav_prev()<CR>
 
 " -----------
 "   Tagbar
@@ -29,18 +49,11 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 Plug 'preservim/tagbar' " Tagbar
 nmap <F8> :TagbarToggle<CR>
 
-" -----------------
-"     Vim-Wiki
-" -----------------
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_global_ext = 0
-
 " -------------------
 "  vim-airline 
 " -------------------
-Plug 'vim-airline/vim-airline' " vim airline (fancy bar at the bottom)
-Plug 'vim-airline/vim-airline-themes' " vim airline themes
+" Plug 'vim-airline/vim-airline' " vim airline (fancy bar at the bottom)
+" Plug 'vim-airline/vim-airline-themes' " vim airline themes
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline_powerline_fonts = 1
 " set t_Co=256
@@ -100,10 +113,8 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " Catppuccin colorscheme
 
 call plug#end()
 
-let maplocalleader = " " 
-let mapleader = " " 
-
 syntax on
+:set scrolloff=5
 :set hidden                " When opening new file in current buffer causes file to be hidden instead of closed 
 :set number                " Shows line number
 :set autoindent            " Allows autoindent
