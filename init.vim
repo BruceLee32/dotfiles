@@ -109,6 +109,8 @@ Plug 'NTBBloodbath/doom-one.nvim' " Doom emacs colorscheme
 Plug 'https://github.com/sainnhe/edge' " Edge colorscheme 
 Plug 'projekt0n/github-nvim-theme' " Github colorscheme
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " Catppuccin colorscheme 
+Plug 'rebelot/kanagawa.nvim' " Kanagawa colorscheme
+Plug 'ful1e5/onedark.nvim' " One dark
 " Plug 'rafi/awesome-vim-colorschemes' " Colorschemes 
 
 call plug#end()

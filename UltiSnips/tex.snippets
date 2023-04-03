@@ -24,13 +24,75 @@ endsnippet
 ###############################
 
 
+###############################
+#          TEMPLATES          #
+###############################
+
+snippet qq "\question" bA 
+\question[$1] $0
+endsnippet
+
+snippet 2qq "\question" bA 
+\question 
+endsnippet
+
+snippet parts "\begin{parts}" bA 
+\begin{parts}
+	$0
+\end{parts}
+endsnippet
+
+snippet pp "\part" bA 
+\part 
+endsnippet
+
+snippet qh "\begin{mychoices}" bA 
+\begin{mychoices}{$1}
+	$2 & $0 
+\end{mychoices}
+endsnippet
+
+snippet 2qh "\begin{mychoices}" bA 
+\begin{mychoices2}{$1}
+	$2 & $0 
+\end{mychoices2}
+endsnippet
+
+snippet cc "\choice" bA 
+\choice 
+endsnippet
+
+snippet subpart "\begin{subpart}" bA 
+\begin{subparts}
+	$0
+\end{subparts}
+endsnippet
+
+snippet sb "\subpart" bA 
+\subpart 
+endsnippet
+
+snippet subsubpart "\begin{subpart}" bA 
+\begin{subsubpart}
+	$0
+\end{subsubpart}
+endsnippet
+
+snippet sbb "\subsubpart" bA 
+\subsubpart 
+endsnippet
+
+###############################
+#----------TEMPLATES----------#
+###############################
+
 
 ###############################
 #         FORMATTING          #
 ###############################
 
-snippet text "\textwidth" 
-\textwidth 
+snippet tt "\textwidth" A 
+\textwidth
 endsnippet
 
 snippet p "point" 
@@ -111,7 +173,7 @@ snippet qt "test questions" bA
 $0
 endsnippet
 
-snippet qh "horizontal questions" bA
+snippet 3qh "horizontal questions" bA
 \begin{tabularx}{\textwidth}{@{}${1:XXX}@{}}
 	${2:column1 & column2 & column3}
 \end{tabularx}
@@ -176,25 +238,22 @@ endsnippet
 ###############################
 
 snippet tabular "table" A
-\begin{table}[h!] % delete [h!] if there are bugs
-
-	%%% TABLE CONFIG %%% 
-	\renewcommand{\arraystretch}{1.5} % changes vertical space for each cell 
-	\setlength{\tabcolsep}{10pt} % changes horizontal space for each cell
+\begin{table}[h!]
+	\renewcommand{\arraystretch}{1.5}
+	\setlength{\tabcolsep}{10pt}
 	\setlength{\arrayrulewidth}{0.25mm}
 
 	\begin{center}
-		${1: title of the table} \\
 		\vspace{0.5em}
-		\begin{tabular}{|c|c|$2} % use r, l, c for right, left, center. use m{3cm} for middle width of 3cm, use  b{3cm} for bottom width of 3cm, and use p{3cm} for a top width of 3cm.  
+		\begin{tabular}{|l|l|$1}
 		\hline
-		$3 & $4 \\ % two columns corresponding to two c's
+		$2 & $3 \\\\ 
 		\hline
-		$5 & $6 \\ % second row
+		$4 & $5 \\\\
 		\hline
 		\end{tabular}
 	\end{center}
-	\caption{$0}
+	\caption{}
 \end{table}
 endsnippet
 
@@ -220,7 +279,7 @@ snippet fig "insert figure" bA
 \centering
 	\includegraphics[width=$2]{../figures/$3}
 	\caption{$4}
-	\label{$5}
+	\label{fig:$5}
 \end{figure}
 endsnippet
 
@@ -232,8 +291,8 @@ snippet grid1 "xy-plane" bA
 			xmin=$2,xmax=$3,
 			ymin=$4,ymax=$5,
 			grid=both,
-			grid style={line width=.1pt, draw=gray!10},
-			major grid style={line width=.2pt,draw=gray!50},
+			grid style={line width=.1pt, draw=gray!40},
+			major grid style={line width=.2pt,draw=black!50},
 			axis lines=middle,
 			minor tick num=$6, % Number of minor ticks per tick
 			enlargelimits={abs=0.5},
@@ -279,6 +338,26 @@ snippet grid2 "xy-plane" bA
 $0
 endsnippet
 
+snippet grid3 "xy-plane" bA 
+\begin{tikzpicture}
+\begin{axis}[
+	width=\textwidth,
+	xmin=0,xmax=10,
+	ymin=0,ymax=10,
+	grid=both,
+	axis lines=middle,
+	enlargelimits={abs=0.5},
+	axis line style={latex-latex},
+	ticklabel style={font=\tiny},
+	xlabel style={at={(ticklabel* cs:1)},anchor=north west},
+	ylabel style={at={(ticklabel* cs:1)},anchor=south west},
+	xtick={0,1,2,3,4,5,6,7,8,9,10},
+	ytick={0,1,2,3,4,5,6,7,8,9,10}
+]
+\end{axis}
+\end{tikzpicture}
+endsnippet
+
 snippet 22fig "side by side figure" bA
 \begin{figure}[!htb] & Some formatting thing. Remove this and the images go above your title page 
 \centering
@@ -300,15 +379,13 @@ snippet 22fig "side by side figure" bA
 endsnippet
 
 snippet 2fig "side by side figure version 2" bA
-\begin{figure}[!htb] % Some formatting thing. Remove this and the images go above your title page  
+\begin{figure}[!htb] 
 	\centering
-	% V CHANGE IMAGE SCALE and REMOVE SQUARE BRACKETS AND ITS CONTENT FOR NO CAPTION V
-	\subfloat${1:[\centering label 1]}{{\includegraphics[width=5cm]{${2:FIGURE}}}}  
+	\subfloat[\centering $1]{{\includegraphics[width=0.5\textwidth]{../figures/$2}}}  
 	\qquad
-	% V CHANGE IMAGE SCALE and REMOVE SQUARE BRACKETS AND ITS CONTENT FOR NO CAPTION V
-	\subfloat${3:[\centering label 2]}{{\includegraphics[width=5cm]{${4:FIGURE}}}}
-	${4:\caption{2 Figures side by side}}
-	${5:\label{fig:example}}
+	\subfloat[\centering $3]{{\includegraphics[width=0.5\textwidth]{../figures/$4}}}  
+	\caption{$4}
+	\label{fig:$5}
 \end{figure}
 $0
 endsnippet
@@ -480,7 +557,7 @@ endsnippet
 #            TEXT             #
 ###############################
 
-snippet tb "bold" 
+snippet tb "bold" A 
 \textbf{$1}$2
 endsnippet
 
@@ -501,6 +578,12 @@ endsnippet
 ###############################
 #            TUFTE            #
 ###############################
+
+snippet proposition "\begin{proposition}\end{proposition}" bA 
+\begin{proposition}
+	$0
+\end{proposition}
+endsnippet
 
 snippet proof "\begin{myproof}\end{myproof}" bA
 \begin{myproof}
@@ -539,6 +622,13 @@ endsnippet
 ###############################
 #       COURSE TEMPLATE       #
 ###############################
+
+snippet 2definition "" bA 
+\subsection{$1}
+\begin{definition}[$1]
+	$0
+\end{definition}
+endsnippet
 
 snippet example "example" bA 
 \begin{example}{$1}
