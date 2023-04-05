@@ -111,28 +111,30 @@ Plug 'projekt0n/github-nvim-theme' " Github colorscheme
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " Catppuccin colorscheme 
 Plug 'rebelot/kanagawa.nvim' " Kanagawa colorscheme
 Plug 'ful1e5/onedark.nvim' " One dark
+Plug 'morhetz/gruvbox' " Gruvbox
 " Plug 'rafi/awesome-vim-colorschemes' " Colorschemes 
 
 call plug#end()
 
 syntax on
-:set scrolloff=5
-:set hidden                " When opening new file in current buffer causes file to be hidden instead of closed 
-:set number                " Shows line number
-:set autoindent            " Allows autoindent
-:set smarttab              " Makes tabbing smarter somehow  
-:set softtabstop=4         " idk
-:set wrap                  " makes it so that the lines appear below when running out of space horizontall on screen
-:colorscheme doom-one
-:set mouse=a               " allows you to use the cursor 
-:set guicursor=i:block     " changes the insert mode cursor to be a block
-:set noswapfile            " no more swapfiles
-:set noshowmode            " no longer shows what mode you are in (currently doesn't work with vim-airline)
-:set tabstop=4             " the number of spaces that you want for the tabs 
-:set shiftwidth=4          " idk
-:set expandtab             " changes tabs into spaces (not working currently)
-:set termguicolors 
-:set relativenumber
+set scrolloff=10
+set hidden                " When opening new file in current buffer causes file to be hidden instead of closed 
+set number                " Shows line number
+set autoindent            " Allows autoindent
+set smarttab              " Makes tabbing smarter somehow  
+set softtabstop=4         " idk
+set wrap                  " makes it so that the lines appear below when running out of space horizontall on screen
+colorscheme onedark
+set mouse=a               " allows you to use the cursor 
+set guicursor=i:block     " changes the insert mode cursor to be a block
+set noswapfile            " no more swapfiles
+set noshowmode            " no longer shows what mode you are in (currently doesn't work with vim-airline)
+set tabstop=4             " the number of spaces that you want for the tabs 
+set shiftwidth=4          " idk
+set expandtab             " changes tabs into spaces (not working currently)
+set termguicolors 
+set relativenumber
+let g:markdown_fenced_languages = ['html', 'python', 'lua', 'vim', 'typescript', 'javascript', 'c']
 
 nnoremap <C-z> u<CR>
 nnoremap <C-y> <C-R>
@@ -190,3 +192,4 @@ map <Leader>tk <C-w>t<C-w>K
 
 " Open terminal in a split 
 map <Leader>tt :vnew term://zsh<CR>
+map <Leader>tT :new term://zsh<CR>
